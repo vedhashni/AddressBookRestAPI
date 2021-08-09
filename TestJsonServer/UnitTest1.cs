@@ -89,6 +89,9 @@ namespace TestJsonServer
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
+        /// <summary>
+        /// UC3-->Upadte the existing contact using(PUT)
+        /// </summary>
         [TestMethod]
         public void OnCallingPutAPI_UpdateEmployeeDetails()
         {
