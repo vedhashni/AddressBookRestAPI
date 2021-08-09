@@ -33,7 +33,7 @@ namespace TestJsonServer
             IRestResponse response = ReadAddressBookData();
             //Convert the json object to list(deserialize)
             var res = JsonConvert.DeserializeObject<List<Person>>(response.Content);
-            Assert.AreEqual(2, res.Count);
+            Assert.AreEqual(4, res.Count);
             //Check the status code 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             //printing the data in console
@@ -116,5 +116,22 @@ namespace TestJsonServer
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
+
+        /// <summary>
+        /// UC4--->Delete the person details using the id
+        /// </summary>
+
+        [TestMethod]
+        public void OnCallingDeleteAPI_DeleteEmployeeDetails()
+        {
+
+            RestRequest request = new RestRequest("/AddressBook/6", Method.DELETE);
+            IRestResponse response = client.Execute(request);
+            //Calling the read data address book 
+            IRestResponse response1 = ReadAddressBookData();
+            List<Person> result = JsonConvert.DeserializeObject<List<Person>>(response1.Content);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
     }
+
 }
